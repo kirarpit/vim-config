@@ -16,14 +16,22 @@ endglobal
 snippet template "Starting a new document" b
 \documentclass{article}
 
+% packages
 \usepackage{amsmath,amssymb}
 \usepackage{physics}
 \usepackage{bbm}
 \usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{etoolbox}
+\AtBeginEnvironment{quote}{\singlespacing\small}
 
+% settings
+\numberwithin{equation}{section}
+
+% new commands
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
-\numberwithin{equation}{section}
+\newcommand{\E}{{\mathbb E}}
+\newcommand{\underE}[2]{\underset{\begin{subarray}{c}#1 \end{subarray}}{\E}\left[ #2 \right]}
 
 \title{\vspace{-2.0cm}$1}
 \date{`date +%F`}
@@ -113,14 +121,18 @@ snippet lr "left( right)" i
 \left( ${1:${VISUAL}} \right) $0
 endsnippet
 
+snippet lc "left{ right}" i
+\left{ ${1:${VISUAL}} \right} $0
+endsnippet
+
 snippet ls "left[ right]" i
 \left[ ${1:${VISUAL}} \right] $0
 endsnippet
 
 ### general math functions
 context "math()"
-snippet EX "\mathbb{E}" iA
-\mathbb{E}[${1:${VISUAL}}]$0
+snippet E "expectation symbol" i
+\underE{$1}{${2:${VISUAL}}}$0
 endsnippet
 
 context "math()"
@@ -144,13 +156,23 @@ snippet sq "\sqrt{}" iA
 endsnippet
 
 context "math()"
-snippet bar "\bar{}" iA
+snippet bar "\bar{}" i
 \bar{${1:${VISUAL}}} $0
 endsnippet
 
 context "math()"
 snippet bbm "\mathbbm{}" iA
 \mathbbm{${1:${VISUAL}}} $0
+endsnippet
+
+context "math()"
+snippet in "\in" i
+\in $0
+endsnippet
+
+context "math()"
+snippet lmn "\infty lemniscate" iA
+\infty $0
 endsnippet
 
 snippet // "Fraction" iA
