@@ -49,10 +49,16 @@ snippet beg "begin{} / end{}" bA
 \end{$1}
 endsnippet
 
-snippet item "Itemize" bA
+snippet itemize "Itemize" bA
 \begin{itemize}
 	\item $0
 \end{itemize}
+endsnippet
+
+snippet eq "equation" bA
+\begin{equation}
+	$0
+\end{equation}
 endsnippet
 
 snippet mk "Math" wA
@@ -83,6 +89,12 @@ snippet intext "inner text" bA
 %
 \intertext{${1:${VISUAL}}} $0
 %
+endsnippet
+
+snippet quote "quotation" bA
+\begin{quoting}
+	$0
+\end{quoting}
 endsnippet
 
 ### super and sub scripts
@@ -131,8 +143,13 @@ endsnippet
 
 ### general math functions
 context "math()"
-snippet E "expectation symbol" i
+snippet uE "expectation symbol" iA
 \underE{$1}{${2:${VISUAL}}}$0
+endsnippet
+
+context "math()"
+snippet E "\mathbb{E}" i
+\mathbb{E}_{$1}\left[${2:${VISUAL}}\right]$0
 endsnippet
 
 context "math()"
@@ -179,3 +196,7 @@ snippet // "Fraction" iA
 \\frac{$1}{$2}$0
 endsnippet
 
+context "math()"
+snippet dint "integral" wA
+\int_{$1}^{$2} ${3:${VISUAL}} $0
+endsnippet
